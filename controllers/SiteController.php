@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\User;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -50,6 +51,21 @@ class SiteController extends Controller
         ];
     }
 
+    public function actionNotifications()
+    {
+        return $this->render('notifications');
+    }
+
+    public function actionFollowers()
+    {
+        return $this->render('followers');
+    }
+
+    public function actionTimeline()
+    {
+        return $this->render('timeline');
+    }
+
     public function actionIndex()
     {
         return $this->render('index');
@@ -82,27 +98,33 @@ class SiteController extends Controller
             $userIsAdmin = false;
 
             // Jugaad
-            if($user_id == 1) {
-                $userIsAdmin = true;
-            }
+            if(isset($user_id)) {
+                if($user_id == 1) {
+                    $userIsAdmin = true;
+                }
 
-            $model->attributes=$_POST['LoginForm'];
-            // validate user input and redirect to the previous page if valid
-            if($model->validate() && $model->login() && !$userIsAdmin)
-            {
-                Yii::$app->session['user_id'] = $user_id;
-                return $this->redirect(array('site/index'));
-            }
+                $model->attributes=$_POST['LoginForm'];
+                // validate user input and redirect to the previous page if valid
+                if($model->validate() && $model->login() && !$userIsAdmin)
+                {
+                    Yii::$app->session['user_id'] = $user_id;
+                    return $this->redirect(array('site/timeline'));
+                }
 
-            elseif($model->validate() && $model->login() && $userIsAdmin)
-                return $this->redirect(array('site/index'));
-            else
+                elseif($model->validate() && $model->login() && $userIsAdmin)
+                    return $this->redirect(array('site/index'));
+                else
+                    return  $this->redirect(Yii::$app->user->returnUrl);
+            }
+            else {
                 return  $this->redirect(Yii::$app->user->returnUrl);
+            }
+
         }
         // display the login form
         $loggedInUser = Yii::$app->user->id;
         if($loggedInUser) {
-            return $this->redirect(array('site/index'));
+            return $this->redirect(array('site/timeline'));
         }
         else {
             return $this->render('login',array('model'=>$model));
@@ -148,8 +170,19 @@ class SiteController extends Controller
         $this->render('signup',array('model'=>$model));
     }
 
+    public function actionUserSignedUp()
+    {
+        $signUp = new SignUpForm();
+        User::findAllUsers();
+    }
+
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    public function actionSay($target = 'World')
+    {
+        return $this->render('say', ['target' => $target]);
     }
 }

@@ -143,6 +143,26 @@ AppAsset::register($this);
                     </div>
 
                     <div role="navigation" style="display: inline-block;"><ul class="nav js-global-actions" id="global-actions">
+                            <li id="global-nav-home" class="home" data-global-action="home">
+                                <a class="js-nav js-tooltip js-dynamic-tooltip" data-placement="bottom" href="<?php echo Yii::$app->request->baseUrl; ?>" data-component-term="home_nav" data-nav="home">
+                                    <span class="text">Timeline</span>
+                                </a>
+                            </li>
+
+                            <li class="dm-nav">
+                                <a role="button" href="<?php echo Url::to(['attachment/index']); ?>" class="js-tooltip js-dynamic-tooltip global-dm-nav" data-placement="bottom" data-original-title="">
+                                    <span class="text">Attachments</span>
+                                    <span class="dm-new"><span class="count-inner"></span></span>
+                                </a>
+                            </li>
+
+                            <li class="dm-nav">
+                                <a role="button" href="<?php echo Url::to(['site/followers']); ?>" class="js-tooltip js-dynamic-tooltip global-dm-nav" data-placement="bottom" data-original-title="">
+                                    <span class="text">Followers</span>
+                                    <span class="dm-new"><span class="count-inner"></span></span>
+                                </a>
+
+                            </li>
 
                             <!--
 
@@ -162,6 +182,19 @@ AppAsset::register($this);
                 <?php } ?>
 
 
+                <div class="pull-right" style="display: inline-block;"><div role="search">
+                        <form class="t1-form form-search js-search-form" action="/search" id="global-nav-search">
+                            <div id="s" style="position: relative">
+                                <label class="visuallyhidden" for="search-query">Search query</label>
+                                <input class="search-input" type="text" id="search-query" placeholder="Search Lecture Plan" name="q" autocomplete="off" spellcheck="false" aria-autocomplete="list" aria-expanded="false" aria-owns="typeahead-dropdown-1">
+                                <div id="parent-s">
+                                </div>
+                            </div>
+          <span class="search-icon js-search-action">
+      <button type="submit" class="fa fa-search" tabindex="-1">
+          <span class="visuallyhidden">Search Lecture Plan</span>
+      </button>
+    </span>
                             <div role="listbox" class="dropdown-menu typeahead" id="typeahead-dropdown-1">
                                 <div aria-hidden="true" class="dropdown-caret">
                                     <div class="caret-outer"></div>
@@ -230,6 +263,22 @@ AppAsset::register($this);
 
                         <?php if($isUserLoggedIn == 1) {?>
 
+                            <li class="me dropdown session js-session" data-global-action="t1me" id="user-dropdown">
+                                <a href="<?php echo $urlProfileLink; ?>" class="btn js-tooltip settings dropdown-toggle js-dropdown-toggle" id="user-dropdown-toggle" title="Profile and settings" data-placement="bottom" role="button" aria-haspopup="true">
+                                    <img class="avatar size32" src="<?php echo $urlProfileImage;?>" alt="Profile and settings" data-user-id="125591222">
+                                </a>
+                            </li>
+
+                            <li role="complementary" aria-labelledby="global-new-tweet-button" class="topbar-tweet-btn">
+
+                                <a href="<?php echo $urlNewAttachment; ?>" title="New Attachment">
+                                    <button id="global-new-tweet-button" type="button" class="js-global-new-tweet js-tooltip btn primary-btn tweet-btn js-dynamic-tooltip" data-placement="bottom" data-component-term="new_tweet_button">
+                                        <span class="fa fa-plus"></span>
+                                        <span class="text"></span>
+                                    </button>
+                                </a>
+
+                            </li>
 
                         <?php } ?>
 

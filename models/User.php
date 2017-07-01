@@ -39,6 +39,13 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
         ],
     ];
 
+    public static function findAllUsers() {
+        $users = UserModel::find()
+            ->indexBy('id')
+            ->all();
+        var_dump($users);
+    }
+
     /**
      * @inheritdoc
      */

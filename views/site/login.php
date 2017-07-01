@@ -73,7 +73,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
 
                         <div class="row buttons">
-                            <?= Html::submitButton('Sign up for Lecture Plan', ['name' => 'signup', 'id' => 'signup_submit']) ?>
+                            <?= Html::a('Sign up for Lecture Plan', ['/site/actionUserSignedUp', 'name' => "Test1", 'email' => "Test1@test.com"], ['name' => 'signup', 'class' => 'btn btn-primary', 'id' => 'signup_submit']) ?>
                         </div>
 
                     </div>
