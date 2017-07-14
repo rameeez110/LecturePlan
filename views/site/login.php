@@ -47,9 +47,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php ActiveForm::end(); ?>
 
                 <!-- Sign Up Form -->
-
+				
                 <div class="form" id="signup_form">
-
                     <?php $form = ActiveForm::begin([
                         'id' => 'sign-up-form',
                     ]); ?>
@@ -58,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     $signUp = new SignUpForm();
                     ?>
 
-                    <div class="signup">
+                    <!--<div class="signup">
                         <h1 id="signup_heading">
                             New to Lecture Plan?
                         </h1>
@@ -77,7 +76,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
 
                     </div>
-                </div>
+                </div>  -->
 
                 <?php ActiveForm::end(); ?>
 
